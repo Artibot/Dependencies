@@ -66,7 +66,7 @@ class servo:
         self.Stopped = True
         
         
-    def __Set_High_Time(self, rate):
+    def Set_High_Time(self, rate):
         if rate > 10:
             rate = 10
         if rate < -10:
@@ -75,13 +75,5 @@ class servo:
         
 
 
-motor = servo(388,"E:/",True)
-motor.Run()
-sleep(3)
-#motor.Set_High_Time(-3)
-sleep(3)
-motor.Stop()
-sleep(3)
-del motor
 
 
