@@ -8,7 +8,7 @@ class servo:
     High_time = 0.0015 # 0.0012----0.0018
     Rate = 0
     thread = ''
-    Stoped = True
+    Stopped = True
     Test = False
     
     def __init__(self, pin, dir = '/sys/class/gpio/', test = False):
@@ -52,16 +52,16 @@ class servo:
                 sleep(self.High_time + self.Rate)
                 self.__set__value(0)
                 sleep(0.02-self.High_time - self.Rate)
-                if self.Stoped:
+                if self.Stopped:
                     return
         
         
     def Run(self):
-        self.Stoped = False
+        self.Stopped = False
         self.thread.start()
         
     def Stop(self):
-        self.Stoped = True
+        self.Stopped = True
         self.thread.join()
         
         
