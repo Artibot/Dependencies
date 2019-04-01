@@ -5,7 +5,7 @@ class servo:
 
     Pin = 0
     Dir = ''
-    High_time = 0.0015 # 0.0012----0.0018
+    High_time = 0.00128 # shifted from 0.0015 due to inaccuracy of PWM signal from TX2
     Rate = 0
     thread = ''
     Stopped = True
@@ -23,9 +23,9 @@ class servo:
         print("stopped")
 
     def __export_pin(self, dir):
-        f = open(dir + "export", "w+")
-        f.write(str(self.Pin))
-        f.close()
+#        f = open(dir + "export", "a+")
+ #       f.write(str(self.Pin))
+  #      f.close()
         ## initialize GPIO
         
         self.Dir = dir + "gpio" + str(self.Pin) + "/"
@@ -67,11 +67,11 @@ class servo:
         
         
     def Set_High_Time(self, rate):
-        if rate > 10:
-            rate = 10
-        if rate < -10:
-            rate = -10
-        self.Rate = 0.00003 * rate
+        if rate > 60:
+            rate = 60
+        if rate < -60:
+            rate = -60
+        self.Rate = 0.00001 * rate
         
 
 
