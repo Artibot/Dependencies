@@ -1,5 +1,7 @@
 import threading
 from time import sleep
+import os
+os.system('./Preset_GPIO.sh')
 
 class servo:
 

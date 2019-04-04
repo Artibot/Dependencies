@@ -17,14 +17,3 @@ class Steering(servo):
         
         self.Set_High_Time(angle*38)
 
- 
-hei = Steering(388)
-hei.Run()
-angle = -1
-while 1: 
-	hei.set_angle(angle)
-	sleep(3)
-	angle = -angle
-hei.Stop()
-del hei
-
