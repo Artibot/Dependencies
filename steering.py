@@ -15,5 +15,5 @@ class Steering(servo):
             angle = 1
                
         
-        self.Set_High_Time(angle*38)
+        self.Set_High_Time(-angle*38)
 
