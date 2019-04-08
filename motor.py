@@ -1,27 +1,26 @@
 from Servo import servo
 from time import sleep
 
-class Motor(servo):
+class Motor:
 
-    def __init__(self, pin, dir = '/sys/class/gpio/', test = False):
-        super().__init__(pin=pin, dir=dir, test=test)
+    Pin = 0
+    Dir = ''
+    def __init__(self, pin, dir = '/sys/class/gpio/'):
+        self.Pin = pin
+        self.__export_pin(dir)
+        self.Run(0)
+
+    def __export_pin(self, dir):        
+        self.Dir = dir + "gpio" + str(self.Pin) + "/"
+        f = open(self.Dir + "direction", "w+")
+        f.write("out")
+        f.close()
+        #Set GPIO to output mode
+        
+        
+    def Run(self, value):
+        f = open(self.Dir + "value", "w+")
+        f.write(str(value))
+        f.close()
 
 
-    def set_throttle(self, throttle = 0):
-
-        if throttle < 0:
-            throttle = 0
-        if throttle > 1:
-            throttle = 1
-        self.Set_High_Time(throttle*10)
-
-
-
-pinObject = Motor(340, "C:/sys/", True)
-pinObject.Run()
-
-sleep(2)
-pinObject.set_throttle(0.6)
-sleep(2)
-pinObject.Stop()
-del pinObject
