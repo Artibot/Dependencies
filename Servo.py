@@ -5,7 +5,7 @@ class servo:
 
     Pin = 0
     Dir = ''
-    High_time = 0.00128 # shifted from 0.0015 due to inaccuracy of PWM signal from TX2
+    High_time = 0.00121 # shifted from 0.0015 due to inaccuracy of PWM signal from TX2
     Rate = 0
     thread = ''
     Stopped = True
@@ -40,7 +40,6 @@ class servo:
         f.close()
 
     def __set__pwm(self):
-        
         if self.Test:
             while(1):
                 f = open(self.Dir + "value", "a+")
@@ -67,10 +66,11 @@ class servo:
         
         
     def Set_High_Time(self, rate):
-        if rate > 60:
-            rate = 60
-        if rate < -60:
-            rate = -60
+        ratio = 60
+        if rate > ratio:
+            rate = ratio
+        if rate < -ratio:
+            rate = -ratio
         self.Rate = 0.00001 * rate
         
 
